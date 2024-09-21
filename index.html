@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Learning to Enhance Aperture Phasor Field for Non-Line-of-Sight Imaging">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Domain Reduction Strategy for Non-Line-of-Sight Imaging</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.ico">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+            <a class="navbar-item" href="https://www.ciplab.kr">
+                <img src="static/images/ciplab-icon.png" />
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    More Research
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="https://join16.github.io/leap-page/">
+                        NLOS - LEAP
+                    </a>
+                    <a class="navbar-item" href="https://hyunbo9.github.io/DomainReduction-page/">
+                        NLOS - Domain Reduction
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">Domain Reduction Strategy for Non-Line-of-Sight
+                        Imaging</h1>
+                    <h3 class="subtitle is-3 publication-conference">ECCV 2024</h3>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">Hyunbo Shim<sup>&ast;</sup>,</span>
+                        <span class="author-block">In Cho<sup>&ast;</sup>,</span>
+                        <span class="author-block">Daekyu Kwon,</span>
+                        <span class="author-block">
+                            <a href="https://sites.google.com/site/seonjookim/home">Seon Joo Kim</a>
+                        </span>
+                    </div>
+
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">Yonsei University</span>
+                    </div>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">(&ast; Equal contribution)</span>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- PDF Link. -->
+                            <span class="link-block">
+                <a href="https://arxiv.org/pdf/2308.10269"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+                            <span class="link-block">
+                <a href="https://arxiv.org/abs/2308.10269"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+                            <!-- Code Link. -->
+                            <span class="link-block">
+                <a href="https://github.com/hyunbo9/domain-reduction-strategy"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        This paper presents a novel optimization-based method for non-line-of-sight (NLOS) imaging that
+                        aims to reconstruct hidden scenes under general setups with significantly reduced reconstruction
+                        time. In NLOS imaging, the visible surfaces of the target objects are notably sparse. To
+                        mitigate unnecessary computations arising from empty regions, we design our method to render the
+                        transients through partial propagations from a continuously sampled set of points from the
+                        hidden space. Our method is capable of accurately and efficiently modeling the view-dependent
+                        reflectance using surface normals, which enables us to obtain surface geometry as well as
+                        albedo. In this pipeline, we propose a novel domain reduction strategy to eliminate superfluous
+                        computations in empty regions. During the optimization process, our domain reduction procedure
+                        periodically prunes the empty regions from our sampling domain in a coarse-to-fine manner,
+                        leading to substantial improvement in efficiency. We demonstrate the effectiveness of our method
+                        in various NLOS scenarios with sparse scanning patterns. Experiments conducted on both synthetic
+                        and real-world data support the efficacy in general NLOS scenarios, and the improved efficiency
+                        of our method compared to the previous optimization-based solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--/ Abstract. -->
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-3">Overview</h2>
+                <div class="column has-text-justified">
+                    <img src="./static/images/teaser.jpg"/>
+                </div>
+                <div class="content has-text-justified">
+                    <p>
+                        <b>(a)</b> A typical Non-line-of-sight (NLOS) imaging system. NLOS imaging aims to reconstruct
+                        scenes that are hidden in direct line-of-sight systems, with a laser illuminating a relay wall,
+                        and a time-resolved detector recording the returning photons.
+                        Non-line-of-sight (NLOS) imaging aims to reconstruct hidden scenes from measurements of indirect
+                        reflections.
+                    </p>
+                    <p>
+                        <b>(b)</b> Considering practical applications of NLOS imaging, there are numerous scenarios
+                        where previous inverse NLOS methods are not sufficient to meet the demands.
+                        Our method is capable of reconstructing both albedo and surface normal of the hidden objects in
+                        general scenarios, including non-confocal, non-planar relay walls and sparse sampling.
+                    </p>
+                    <p>
+                        <b>(c)</b> Our domain reduction procedure gradually prunes empty regions in a coarse-to-fine
+                        manner,
+                        achieving about 20&times; acceleration of the reconstruction time.
+                        The memory efficiency of our method enables reconstruction of high-resolution volumes with a
+                        single commercial GPU.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-3">Method</h2>
+                <div class="column has-text-justified">
+                    <img src="./static/images/method.jpg"/>
+                </div>
+                <div class="content has-text-justified">
+                    <p>
+                        <b>(a)</b> In our reconstruction scheme, we divide hidden space to a grid shape and assign
+                        albedo and
+                        surface normal for each vertex.
+                        Input points are randomly sampled from the hidden space. Then the light propagation from each
+                        point is computed, of which superposition is used as predicted transients. The
+                        variables are optimized by minimizing the L2 distance.
+                        Our domain is gradually reduced by pruning the empty regions during the optimization.
+                    </p>
+                    <p>
+                        <b>(b)</b> We compute the forward light propagation function from each point. The arrival
+                        time at scan point is first identified, and then the fall-off term and the cosine term are
+                        computed using point-wise albedo and normal.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-3">Results</h2>
+                <h3 class="title is-4">Confocal 32&times;32 Results</h3>
+                <div class="column has-text-justified">
+                    <img src="./static/images/results-confocal.jpg"/>
+                </div>
+                <div class="content has-text-justified">
+                    <p>
+                        We first evaluate our method on 32&times;32 measurements. As can be seen, our method achieves
+                        the highest performance.
+                    </p>
+                </div>
+
+                <h3 class="title is-4">Normal Maps</h3>
+                <div class="column has-text-justified">
+                    <img src="./static/images/results-normal.jpg"/>
+                </div>
+                <div class="content has-text-justified">
+                    <p>
+                        Compared to DLCT, our method delivers normal maps in high-quality, reconstructing details of the
+                        objects, with significantly reduced scanning time (32&times;32 measurements).
+                    </p>
+                </div>
+
+                <h3 class="title is-4">Results in Various Scenarios</h3>
+                <div class="column has-text-justified">
+                    <img src="./static/images/results-various-setups.jpg"/>
+                </div>
+                <div class="content has-text-justified">
+                    <p>
+                        (a) Results on the real-world 32&times;32 transients of the NT instance, measured with a
+                        non-planar relay wall.
+                        (b) Results on non-confocal ZNLOS Bunny.
+                        (c) Results on Bunny with various sampling resolutions.
+                        Our method consistently delivers high-quality results in various scanning scenarios.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{shim2024drs,
+  author    = {Shim, Hyunbo and Cho, In and Daekyu, Kwon and Kim, Seon Joo},
+  title     = {Domain Reduction Strategy for Non Line of Sight Imaging},
+  journal   = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  year      = {2024},
+}</code></pre>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered"></div>
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+                    <p>
+                        This website is licensed under a <a rel="license"
+                                                            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                        Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p>
+                    <p>
+                        This means you are free to borrow the <a
+                            href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+                        we just ask that you link back to this page in the footer.
+                        Please remember to remove the analytics code included in the header of the website which
+                        you do not want on your website.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
